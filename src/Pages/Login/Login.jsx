@@ -1,77 +1,82 @@
-
-import { useState } from 'react';
-import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { AuthContext } from '../../providers/Authprovider';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordVisible, setPasswordVisible] = useState(false);
+  const { register, handleSubmit, watch } = useForm();
+  const password = watch('password');
+  const email = watch('email');
+  const [showPassword, setShowPassword] = React.useState(false);
 
   const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
+    setShowPassword(!showPassword);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-   
-    console.log('Email:', email);
-    console.log('Password:', password);
-    
-    setEmail('');
-    setPassword('');
+   const {signIn} = useContext(AuthContext)
+  const onSubmit = (data) => {
+    console.log(data); 
+    console.log(email); 
+    console.log(password);
+    signIn(email,password)
+    .then(result =>{
+      const loggedUser = result.user;
+      console.log(loggedUser)
+    })
   };
 
   return (
-    <div className="flex flex-col items-center mt-10">
-      <h2 className="text-3xl font-bold mb-4">Login</h2>
-      <form className="w-72" onSubmit={handleSubmit}>
+    <div className="flex justify-center items-center h-screen">
+      <form
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="mb-4">
-          <label htmlFor="email" className="block mb-1 font-medium">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
             Email
           </label>
           <input
-            type="email"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+            type="email"
+            placeholder="Enter your email"
+            {...register('email', { required: true })}
           />
         </div>
-        <div className="relative">
-          <label htmlFor="password" className="block mb-1 font-medium">
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
             Password
           </label>
-          <input
-            type={passwordVisible ? 'text' : 'password'}
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md"
-          />
-          <button
-            type="button"
-            className="absolute top-2 right-2 text-gray-500"
-            onClick={togglePasswordVisibility}
-          >
-            {passwordVisible ? (
-              <RiEyeLine className="h-5 w-5" />
-            ) : (
-              <RiEyeOffLine className="h-5 w-5" />
-            )}
-          </button>
+          <div className="relative">
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Enter your password"
+              {...register('password', { required: true })}
+            />
+            <button
+              type="button"
+              className="absolute top-2 right-2 text-gray-500 focus:outline-none"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? <FiEyeOff /> : <FiEye />}
+            </button>
+          </div>
         </div>
-        <div className="mt-4">
-          <Link to="/registration" className="text-blue-500">
+        <div className="mb-6">
+          <a className="text-blue-500 hover:underline" href="/signup">
             Register
-          </Link>
+          </a>
         </div>
-        <div className="mt-4">
-          {/* Include your social login buttons here */}
+        <div className="flex items-center justify-between">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Login
+          </button>
+          
         </div>
-        <button type="submit" className="w-full py-2 mt-4 bg-blue-500 text-white rounded-md">
-          Login
-        </button>
       </form>
     </div>
   );

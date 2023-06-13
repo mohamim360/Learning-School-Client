@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const NavBer = () => {
+  
   const navItems = (
     <>
       <li><Link to="/">Home</Link></li>
