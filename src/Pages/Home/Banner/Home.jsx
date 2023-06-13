@@ -1,4 +1,4 @@
-import Banner from "../Banner/Banner";
+import Banner from "./Banner";
 import ExtraSection from "../Popular/ExtraSection";
 import PopularClasses from "../Popular/PopularClasses";
 import Populerinstructor from "../Popular/Populerinstructor";

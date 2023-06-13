@@ -1,93 +1,97 @@
 [
-  {
-    "id": "1",
-    "classImage": "https://example.com/class_image.jpg",
-    "name": "Yoga Class",
-    "instructorName": "John Doe",
-    "instructorImage": "https://example.com/instructor_image.jpg",
-    "availableSeats": 15,
-    "price": 10.99
-  }
-  ,
   
-  {
-    "id": "2",
-    "classImage": "https://example.com/class_image2.jpg",
-    "name": "Pilates Class",
-    "instructorName": "Jane Smith",
-    "instructorImage": "https://example.com/instructor_image2.jpg",
-    "availableSeats": 12,
-    "price": 12.99
-  }
-  ,
-  {
-    "id": "3",
-    "classImage": "https://example.com/class_image3.jpg",
-    "name": "Zumba Class",
-    "instructorName": "Mike Johnson",
-    "instructorImage": "https://example.com/instructor_image3.jpg",
-    "availableSeats": 20,
-    "price": 8.99
-  }
-  ,
-  {
-    "id": "4",
-    "classImage": "https://example.com/class_image4.jpg",
-    "name": "Kickboxing Class",
-    "instructorName": "Sarah Davis",
-    "instructorImage": "https://example.com/instructor_image4.jpg",
-    "availableSeats": 18,
-    "price": 14.99
-  },
-  {
-    "id": "5",
-    "classImage": "https://example.com/class_image5.jpg",
-    "name": "Spin Class",
-    "instructorName": "Chris Wilson",
-    "instructorImage": "https://example.com/instructor_image5.jpg",
-    "availableSeats": 10,
-    "price": 9.99
-  },
-  {
-    "id": "6",
-    "classImage": "https://example.com/class_image6.jpg",
-    "name": "Boxing Class",
-    "instructorName": "Emily Turner",
-    "instructorImage": "https://example.com/instructor_image6.jpg",
-    "availableSeats": 16,
-    "price": 11.99
-  }
-  ,
-  {
-    "id": "7",
-    "classImage": "https://example.com/class_image7.jpg",
-    "name": "Dance Class",
-    "instructorName": "David Lee",
-    "instructorImage": "https://example.com/instructor_image7.jpg",
-    "availableSeats": 25,
-    "price": 7.99
-  }
-  ,
-  {
-    "id": "8",
-    "classImage": "https://example.com/class_image8.jpg",
-    "name": "Bootcamp Class",
-    "instructorName": "Amy Hernandez",
-    "instructorImage": "https://example.com/instructor_image8.jpg",
-    "availableSeats": 14,
-    "price": 13.99
-  }
-  ,
+    {
+      "id": "1",
+      "classImage": "https://example.com/class_image.jpg",
+      "name": "Yoga Class",
+      "instructorName": "John Doe",
+      "instructorImage": "https://example.com/instructor_image.jpg",
+      "instructorEmail": "john.doe@example.com",
+      "availableSeats": 15,
+      "price": 10.99
+    },
+    {
+      "id": "2",
+      "classImage": "https://example.com/class_image2.jpg",
+      "name": "Pilates Class",
+      "instructorName": "Jane Smith",
+      "instructorImage": "https://example.com/instructor_image2.jpg",
+      "instructorEmail": "jane.smith@example.com",
+      "availableSeats": 12,
+      "price": 12.99
+    },
+    {
+      "id": "3",
+      "classImage": "https://example.com/class_image3.jpg",
+      "name": "Zumba Class",
+      "instructorName": "Mike Johnson",
+      "instructorImage": "https://example.com/instructor_image3.jpg",
+      "instructorEmail": "mike.johnson@example.com",
+      "availableSeats": 20,
+      "price": 8.99
+    },
+    {
+      "id": "4",
+      "classImage": "https://example.com/class_image4.jpg",
+      "name": "Kickboxing Class",
+      "instructorName": "Sarah Davis",
+      "instructorImage": "https://example.com/instructor_image4.jpg",
+      "instructorEmail": "sarah.davis@example.com",
+      "availableSeats": 18,
+      "price": 14.99
+    },
+    {
+      "id": "5",
+      "classImage": "https://example.com/class_image5.jpg",
+      "name": "Spin Class",
+      "instructorName": "Chris Wilson",
+      "instructorImage": "https://example.com/instructor_image5.jpg",
+      "instructorEmail": "chris.wilson@example.com",
+      "availableSeats": 10,
+      "price": 9.99
+    },
+    {
+      "id": "6",
+      "classImage": "https://example.com/class_image6.jpg",
+      "name": "Boxing Class",
+      "instructorName": "Emily Turner",
+      "instructorImage": "https://example.com/instructor_image6.jpg",
+      "instructorEmail": "emily.turner@example.com",
+      "availableSeats": 16,
+      "price": 11.99
+    },
+    {
+      "id": "7",
+      "classImage": "https://example.com/class_image7.jpg",
+      "name": "Dance Class",
+      "instructorName": "David Lee",
+      "instructorImage": "https://example.com/instructor_image7.jpg",
+      "instructorEmail": "david.lee@example.com",
+      "availableSeats": 25,
+      "price": 7.99
+    },
+    {
+      "id": "8",
+      "classImage": "https://example.com/class_image8.jpg",
+      "name": "Bootcamp Class",
+      "instructorName": "Amy Hernandez",
+      "instructorImage": "https://example.com/instructor_image8.jpg",
+      "instructorEmail": "amy.hernandez@example.com",
+      "availableSeats": 14,
+      "price": 13.99
+    },
+  
   {
     "id": "9",
     "classImage": "https://example.com/class_image9.jpg",
     "name": "Swimming Class",
     "instructorName": "Michael Thompson",
     "instructorImage": "https://example.com/instructor_image9.jpg",
+    "instructorEmail": "amy.Michael @example.com",
    "availableSeats": 6,
     "price": 13.22
   }
   
+]
   
   
-  ]
