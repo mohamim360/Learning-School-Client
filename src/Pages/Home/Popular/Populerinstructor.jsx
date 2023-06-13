@@ -5,7 +5,7 @@ const Populerinstructor = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('data.json')
+    fetch('http://localhost:5000/data')
       .then(res => res.json())
       .then(data => {
         const sortedData = data.sort((a, b) => a.availableSeats - b.availableSeats);

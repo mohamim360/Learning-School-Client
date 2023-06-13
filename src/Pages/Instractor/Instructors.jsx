@@ -1,7 +1,7 @@
 import instructorsData from "../../../public/data.json";
 const Instructors = () => {
   return (
-    <div>
+    <div >
       <div className="flex flex-wrap justify-center">
       {instructorsData.map((instructor) => (
         <div key={instructor.id} className="max-w-sm rounded overflow-hidden shadow-lg m-4">
