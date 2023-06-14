@@ -1,27 +1,35 @@
-import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { AuthContext } from '../../providers/Authprovider';
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { AuthContext } from "../../providers/Authprovider";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { register, handleSubmit, watch } = useForm();
-  const password = watch('password');
-  const email = watch('email');
+  const password = watch("password");
+  const email = watch("email");
   const [showPassword, setShowPassword] = React.useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-   const {signIn} = useContext(AuthContext)
+  const { signIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/"; 
+
   const onSubmit = (data) => {
-    console.log(data); 
-    console.log(email); 
+    console.log(data);
+    console.log(email);
     console.log(password);
-    signIn(email,password)
-    .then(result =>{
+    signIn(email, password)
+    .then((result) => {
       const loggedUser = result.user;
-      console.log(loggedUser)
-    })
+      console.log(loggedUser);
+    });
+    navigate(from, { replace: true });
   };
 
   return (
@@ -31,7 +39,10 @@ const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="email"
+          >
             Email
           </label>
           <input
@@ -39,20 +50,23 @@ const Login = () => {
             id="email"
             type="email"
             placeholder="Enter your email"
-            {...register('email', { required: true })}
+            {...register("email", { required: true })}
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
             Password
           </label>
           <div className="relative">
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
-              {...register('password', { required: true })}
+              {...register("password", { required: true })}
             />
             <button
               type="button"
@@ -75,7 +89,6 @@ const Login = () => {
           >
             Login
           </button>
-          
         </div>
       </form>
     </div>

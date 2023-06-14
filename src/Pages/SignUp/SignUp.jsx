@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../providers/Authprovider';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  const {  register, handleSubmit, formState: { errors }, watch  } = useForm();
+  const {  register, reset, handleSubmit, formState: { errors }, watch  } = useForm();
 
-  const {createUser} = useContext(AuthContext);
-
+  const {createUser,profile} = useContext(AuthContext);
+  const navigate = useNavigate();
   const password = watch('password');
   const email = watch('email');
   const onSubmit = (data) => {
@@ -17,6 +18,15 @@ const SignUp = () => {
     .then(result =>{
       const loggedUser = result.user;
       console.log(loggedUser)
+      profile(data.name, data.photo)
+      .then(() => {
+          console.log('user profile info updated')
+          reset();
+         
+          navigate('/');
+
+      })
+      .catch(error => console.log(error))
     })
   };
 
