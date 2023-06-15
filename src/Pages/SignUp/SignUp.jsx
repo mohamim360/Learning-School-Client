@@ -1,37 +1,62 @@
-import { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import { AuthContext } from '../../providers/Authprovider';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { AuthContext } from "../../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import SocialLogin from "../../Social/SocialLogin";
 
 const SignUp = () => {
-  const {  register, reset, handleSubmit, formState: { errors }, watch  } = useForm();
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
 
-  const {createUser,profile} = useContext(AuthContext);
+  const { createUser, profile } = useContext(AuthContext);
   const navigate = useNavigate();
-  const password = watch('password');
-  const email = watch('email');
+  const password = watch("password");
+  const email = watch("email");
   const onSubmit = (data) => {
     console.log(data);
-    console.log(email); 
+    console.log(email);
     console.log(password);
-    createUser(data.email,data.password)
-    .then(result =>{
+    createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
-      console.log(loggedUser)
-      profile(data.name, data.photo)
-      .then(() => {
-          console.log('user profile info updated')
-          reset();
-         
-          navigate('/');
+      console.log(loggedUser);
 
-      })
-      .catch(error => console.log(error))
-    })
+      profile(data.name, data.photoURL)
+        .then(() => {
+          const saveUser = { name: data.name, email: data.email };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(saveUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "User created successfully.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            });
+        })
+        .catch((error) => console.log(error));
+    });
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center flex-col items-center h-screen">
       <form onSubmit={handleSubmit(onSubmit)} className="w-96">
         <h2 className="text-2xl font-bold mb-4">Registration</h2>
 
@@ -40,7 +65,7 @@ const SignUp = () => {
             Name
           </label>
           <input
-            {...register('name', { required: true })}
+            {...register("name", { required: true })}
             type="text"
             id="name"
             className="w-full border border-gray-300 rounded py-2 px-3"
@@ -52,12 +77,14 @@ const SignUp = () => {
             Email
           </label>
           <input
-            {...register('email', { required: true })}
+            {...register("email", { required: true })}
             type="email"
             id="email"
             className="w-full border border-gray-300 rounded py-2 px-3"
           />
-          {errors.email && <span className="text-red-500">Email is required</span>}
+          {errors.email && (
+            <span className="text-red-500">Email is required</span>
+          )}
         </div>
 
         <div className="mb-4">
@@ -65,25 +92,28 @@ const SignUp = () => {
             Password
           </label>
           <input
-            {...register('password', {
+            {...register("password", {
               required: true,
               minLength: 6,
-              pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{6,}$/
+              pattern:
+                /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{6,}$/,
             })}
             type="password"
             id="password"
             className="w-full border border-gray-300 rounded py-2 px-3"
           />
-          {errors.password?.type === 'required' && (
+          {errors.password?.type === "required" && (
             <span className="text-red-500">Password is required</span>
           )}
-          {errors.password?.type === 'minLength' && (
-            <span className="text-red-500">Password must be at least 6 characters long</span>
-          )}
-          {errors.password?.type === 'pattern' && (
+          {errors.password?.type === "minLength" && (
             <span className="text-red-500">
-              Password must contain at least one uppercase letter, one lowercase letter, one
-              number, and one special character
+              Password must be at least 6 characters long
+            </span>
+          )}
+          {errors.password?.type === "pattern" && (
+            <span className="text-red-500">
+              Password must contain at least one uppercase letter, one lowercase
+              letter, one number, and one special character
             </span>
           )}
         </div>
@@ -93,15 +123,20 @@ const SignUp = () => {
             Confirm Password
           </label>
           <input
-            {...register('confirmPassword', {
+            {...register("confirmPassword", {
               required: true,
-              validate: (value) => value == password || 'Passwords do not match'
+              validate: (value) =>
+                value == password || "Passwords do not match",
             })}
             type="password"
             id="confirmPassword"
             className="w-full border border-gray-300 rounded py-2 px-3"
           />
-          {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword.message}</span>}
+          {errors.confirmPassword && (
+            <span className="text-red-500">
+              {errors.confirmPassword.message}
+            </span>
+          )}
         </div>
 
         <div className="mb-4">
@@ -109,20 +144,26 @@ const SignUp = () => {
             Photo URL
           </label>
           <input
-            {...register('photoURL')}
+            {...register("photoURL")}
             type="text"
             id="photoURL"
             className="w-full border border-gray-300 rounded py-2 px-3"
           />
         </div>
 
-        <button type="submit" className="bg-blue-500 text-white px-4           py-2 rounded hover:bg-blue-600 transition-colors duration-300">
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4           py-2 rounded hover:bg-blue-600 transition-colors duration-300"
+        >
           Sign Up
         </button>
       </form>
+      <div>
+        <p>Sign in using google</p>
+      <SocialLogin></SocialLogin>
+      </div>
     </div>
   );
 };
 
 export default SignUp;
-

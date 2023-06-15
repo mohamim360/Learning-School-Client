@@ -1,36 +1,26 @@
 import React from 'react';
 import useSelect from '../../../Hooks/useSelect';
-import Swal from 'sweetalert2';
 
 const SelectedClass = () => {
-  
   const [select, refetch] = useSelect();
+
   const handleDelete = (id) => {
-    console.log(id)
-    Swal.fire({
-      title: 'Are you sure?',
-     
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:5000/selects/${id}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount > 0) {
-                    refetch();
-                    Swal.fire(
-                        'Deleted!'
-                    )
-                }
-            })
-    }
-    });
+    console.log(id);
+
+    
+    fetch(`http://localhost:5000/selects/${id}`, {
+      method: 'DELETE'
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          refetch();
+          console.log('Class deleted successfully!');
+        }
+      })
+      .catch((error) => {
+        console.log('Error deleting class:', error);
+      });
   };
 
   const handlePay = (id) => {

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { AuthContext } from "../../providers/Authprovider";
 import { useLocation, useNavigate } from "react-router-dom";
+import SocialLogin from "../../Social/SocialLogin";
 
 const Login = () => {
   const { register, handleSubmit, watch } = useForm();
@@ -90,7 +91,13 @@ const Login = () => {
             Login
           </button>
         </div>
+        
       </form>
+      <div>
+        <p>Sign in using google</p>
+      <SocialLogin></SocialLogin>
+      </div>
+      
     </div>
   );
 };
