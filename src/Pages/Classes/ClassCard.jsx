@@ -18,7 +18,7 @@ const ClassCard = ({ classData}) => {
     console.log(classData)
 
     if(user && user.email){
-      const cartItem = {ItemId: id, name, price, email: user.email}
+      const cartItem = { ItemId: classData.ItemId, name, price, email: user.email}
       fetch('http://localhost:5000/selects',{
         method: 'POST',
         headers: {

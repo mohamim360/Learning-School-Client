@@ -9,6 +9,7 @@
       "instructorEmail": "john.doe@example.com",
       "availableSeats": 15,
       "price": 10.99
+      
     },
     {
       "id": "2",
