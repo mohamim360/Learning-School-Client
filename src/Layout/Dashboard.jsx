@@ -1,11 +1,11 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
+import useSir from "../Hooks/useSir";
 
 const Dashboard = () => {
+  const [isAdmin] = useAdmin();
+  const [isSir] = useSir();
 
-  const isAdmin = true;
-
-  
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -28,30 +28,31 @@ const Dashboard = () => {
                   <NavLink to="/dashboard/home">Admin Home</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/reservations"> Add Items</NavLink>
+                  <NavLink to="/dashboard/reservations">Add Items</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/history">Manage Items</NavLink>
+                  <NavLink to="/dashboard/manageclasses">Manage Classes</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/history">
-                   Manage Bookings
-                  </NavLink>
+                  <NavLink to="/dashboard/history">Manage Bookings</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/allusers">
-                     All Users
-                  </NavLink>
+                  <NavLink to="/dashboard/allusers">All Users</NavLink>
                 </li>
               </>
             ) : (
               <>
                 <li>
-                  <NavLink to="/dashboard/home">User Hoe</NavLink>
+                  <NavLink to="/dashboard/home">User Home</NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/select">Selected Classes</NavLink>
                 </li>
+                {isSir && (
+                  <li>
+                    <NavLink to="/dashboard/addclass">Add Classes</NavLink>
+                  </li>
+                )}
               </>
             )}
 
