@@ -13,6 +13,8 @@ import Allusers from "../Pages/Dashboard/Admin/Allusers";
 import ManageClasses from "../Pages/Dashboard/Admin/ManageClasses";
 import AdminRoute from "./AdminRoute";
 import AddClass from "../Pages/Dashboard/Teacher/AddClass";
+import MyClass from "../Pages/Dashboard/Teacher/MyClass";
+import Payment from "../Pages/Dashboard/Student/Payment";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -51,12 +53,20 @@ export const router = createBrowserRouter([
         element:<SelectedClass></SelectedClass>,
       },
       {
+        path: "pay",
+        element:<Payment></Payment>,
+      },
+      {
         path: "addclass",
         element:<AddClass></AddClass>,
       },
       {
+        path: "myclass",
+        element:<MyClass></MyClass>,
+      },
+      {
         path: "allusers",
-        element:<Allusers></Allusers>
+        element:<AdminRoute><Allusers></Allusers></AdminRoute>
       }
 ,
       {

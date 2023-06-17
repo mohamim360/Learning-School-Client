@@ -8,16 +8,17 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="drawer lg:drawer-open">
+      <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
-          <Outlet></Outlet>
+        <div className="drawer-content">
+          
           <label
             htmlFor="my-drawer-2"
             className="btn btn-primary drawer-button lg:hidden"
           >
             Open drawer
           </label>
+          <Outlet></Outlet>
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
@@ -28,13 +29,7 @@ const Dashboard = () => {
                   <NavLink to="/dashboard/home">Admin Home</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/reservations">Add Items</NavLink>
-                </li>
-                <li>
                   <NavLink to="/dashboard/manageclasses">Manage Classes</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/history">Manage Bookings</NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/allusers">All Users</NavLink>
@@ -42,17 +37,23 @@ const Dashboard = () => {
               </>
             ) : (
               <>
+                {isSir ? (
+                  <>
+                    <li>
+                      <NavLink to="/dashboard/addclass">Add Classes</NavLink>
+                    </li>
+                    <li>
+                      <NavLink to="/dashboard/myclass">My Classes</NavLink>
+                    </li>
+                  </>
+                ) : (
+                  <li>
+                    <NavLink to="/dashboard/select">Selected Classes</NavLink>
+                  </li>
+                )}
                 <li>
                   <NavLink to="/dashboard/home">User Home</NavLink>
                 </li>
-                <li>
-                  <NavLink to="/dashboard/select">Selected Classes</NavLink>
-                </li>
-                {isSir && (
-                  <li>
-                    <NavLink to="/dashboard/addclass">Add Classes</NavLink>
-                  </li>
-                )}
               </>
             )}
 

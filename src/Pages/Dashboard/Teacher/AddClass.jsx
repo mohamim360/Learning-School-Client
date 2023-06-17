@@ -1,5 +1,8 @@
 import { useState } from 'react';
+
+import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxios';
+
 
 const AddClass = () => {
   const [className, setClassName] = useState('');
@@ -7,6 +10,8 @@ const AddClass = () => {
   const [availableSeats, setAvailableSeats] = useState(0);
   const [price, setPrice] = useState(0);
 
+  const { user } = useAuth(); 
+  
   const [axiosSecure] = useAxiosSecure();
 
   const handleSubmit = (e) => {
@@ -18,6 +23,8 @@ const AddClass = () => {
       classImage,
        availableSeats,
       price,
+      displayName: user.displayName, 
+      email: user.email, 
       status: 'pending',
     };
     
@@ -59,6 +66,32 @@ const AddClass = () => {
             className="border border-gray-300 p-2 w-full"
           />
         </div>
+        
+        <div>
+          <label htmlFor="instructorName" className="block mb-1">
+            Instructor Name:
+          </label>
+          <input
+            type="text"
+            id="instructorName"
+            value={user.displayName} 
+            disabled
+            className="border border-gray-300 p-2 w-full"
+          />
+        </div>
+        <div>
+          <label htmlFor="email" className="block mb-1">
+            Email:
+          </label>
+          <input
+            type="email"
+            id="email"
+            value={user.email} // Assuming user.email exists in the user object
+            disabled
+            className="border border-gray-300 p-2 w-full"
+          />
+        </div>
+
         <div>
           <label htmlFor="availableSeats" className="block mb-1">
             Available Seats:

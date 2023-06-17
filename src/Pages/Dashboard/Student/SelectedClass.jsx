@@ -1,4 +1,5 @@
-import React from 'react';
+
+import { Link } from 'react-router-dom';
 import useSelect from '../../../Hooks/useSelect';
 
 const SelectedClass = () => {
@@ -23,12 +24,15 @@ const SelectedClass = () => {
       });
   };
 
-  const handlePay = (id) => {
-    console.log(`Paying for class with ID: ${id}`);
-  };
-
+  
   return (
     <div>
+       <Link to="/dashboard/pay"><button
+                    className="text-green-500 btn btn-warning"
+                    
+                  >
+                    Pay
+                  </button></Link>
       <h2 className="text-2xl font-bold mb-4">My Selected Classes:</h2>
       {select.length > 0 ? (
         <table className="min-w-full border border-gray-200">
@@ -51,12 +55,7 @@ const SelectedClass = () => {
                   >
                     Delete
                   </button>
-                  <button
-                    className="text-green-500"
-                    onClick={() => handlePay(cls._id)}
-                  >
-                    Pay
-                  </button>
+                 
                 </td>
               </tr>
             ))}
