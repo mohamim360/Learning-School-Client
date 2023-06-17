@@ -16,7 +16,7 @@ const NavBer = () => {
       <li><Link to="/">Home</Link></li>
       <li><Link to="/instructors">Instructors</Link></li>
       <li><Link to="/classes">Classes</Link></li>
-      <li><Link to="/dashboard/select">Selected Classes</Link></li>
+      <li><Link to="/dashboard/select">DashBoard</Link></li>
       {
             user ? <>
                <span>{user?.photoURL}</span>
@@ -55,14 +55,12 @@ const NavBer = () => {
               {navItems}
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <a className="btn btn-ghost normal-case text-xl">SPORTS ACADEMIA</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
-        </div>
+      
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ import AdminRoute from "./AdminRoute";
 import AddClass from "../Pages/Dashboard/Teacher/AddClass";
 import MyClass from "../Pages/Dashboard/Teacher/MyClass";
 import Payment from "../Pages/Dashboard/Student/Payment";
+import NotFound from "../NotFound";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -75,5 +76,9 @@ export const router = createBrowserRouter([
       }
 
     ]
+  },
+  {
+    path: "*",
+      element: <NotFound></NotFound>,
   }
 ]);
