@@ -9,7 +9,7 @@ const SelectedClass = () => {
     console.log(id);
 
     
-    fetch(`http://localhost:5000/selects/${id}`, {
+    fetch(`https://learning-school-server-mohamim360.vercel.app/selects/${id}`, {
       method: 'DELETE'
     })
       .then((res) => res.json())

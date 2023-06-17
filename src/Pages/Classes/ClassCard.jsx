@@ -19,7 +19,7 @@ const ClassCard = ({ classData}) => {
 
     if(user && user.email){
       const cartItem = { ItemId: classData.ItemId, name, price, email: user.email}
-      fetch('http://localhost:5000/selects',{
+      fetch('https://learning-school-server-mohamim360.vercel.app/selects',{
         method: 'POST',
         headers: {
             'content-type': 'application/json'

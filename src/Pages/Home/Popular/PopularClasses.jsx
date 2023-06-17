@@ -4,7 +4,7 @@ const PopularClasses = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/data')
+    fetch('https://learning-school-server-mohamim360.vercel.app/data')
       .then((res) => res.json())
       .then((data) => {
         const sortedData = data.sort((a, b) => a.availableSeats - b.availableSeats);
